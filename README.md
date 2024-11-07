@@ -30,4 +30,5 @@ EEPOM:AT24C256;
 指纹识别模块：AS608;
 
 ## ...
-![image](https://github.com/user-attachments/assets/de6c5c23-1f54-440a-b409-62d8217b85cc)
+![image](https://github.com/user-attachments/assets/692336bd-5030-49a4-87cd-6fa9480a363a)
+
