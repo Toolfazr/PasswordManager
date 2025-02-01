@@ -51,10 +51,10 @@ int BytesModel::bytesInsert(QByteArray bytes, QString attr)
 
     if (!query.exec()) {
         qDebug() << "Failed to insert BLOB data:" << query.lastError().text();
-        return -1; // 插入失败返回-1
+        return -1;
     }
 
-    return query.lastInsertId().toInt(); // 返回新插入记录的ID
+    return query.lastInsertId().toInt();
 }
 
 QByteArray BytesModel::bytesSelect(size_t id, QString attr)
@@ -117,19 +117,17 @@ bool BytesModel::bytesUpdate(QByteArray bytes, QString attr, size_t id)
 std::unordered_map<size_t, QByteArray> BytesModel::getAllValidIdWithNote()
 {
     QSqlQuery query;
-    // 假设 'name' 是你要查询的属性字段，可以根据实际字段名替换
     QString queryStr = "SELECT id, note FROM test";
     std::unordered_map<size_t, QByteArray> res;
 
     if (!query.exec(queryStr)) {
         qDebug() << "查询失败: " << query.lastError();
-        return res;  // 返回空的unordered_map
+        return res;
     }
 
-    // 遍历查询结果并将主键和属性插入unordered_map中
     while (query.next()) {
-        size_t id = query.value(0).toInt();    // 主键
-        QByteArray noteBytes = query.value(1).toByteArray();  // 属性字段（例如'name'）
+        size_t id = query.value(0).toInt();
+        QByteArray noteBytes = query.value(1).toByteArray();
         res.insert({id, noteBytes});
     }
 
